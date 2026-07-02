@@ -1,0 +1,6 @@
+{
+  "name": "Krabi ATV Adventure Voucher Manager",
+  "description": "A comprehensive booking, voucher, and financial management system for Krabi ATV Adventure, featuring user roles, bilingual voucher generation, expense tracking, and spreadsheet views.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

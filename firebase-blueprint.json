@@ -1,0 +1,88 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User accounts with system credentials",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "manager", "staff"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "username", "password", "role"]
+    },
+    "Voucher": {
+      "title": "Voucher",
+      "description": "Activity vouchers and tour reservations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "serviceDate": { "type": "string" },
+        "serviceTime": { "type": "string" },
+        "agentName": { "type": "string" },
+        "activityType": { "type": "string" },
+        "duration": { "type": "string" },
+        "paxCount": { "type": "integer" },
+        "pickupLocation": { "type": "string" },
+        "pricePerPax": { "type": "number" },
+        "totalPrice": { "type": "number" },
+        "receivedAmount": { "type": "number" },
+        "paymentStatus": { "type": "string", "enum": ["paid", "pending", "agent_bill"] },
+        "voucherStatus": { "type": "string", "enum": ["active", "used", "cancelled"] },
+        "sendEmail": { "type": "boolean" },
+        "remark": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "customerName", "serviceDate", "activityType", "paxCount", "totalPrice", "paymentStatus", "voucherStatus"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Daily expenditure logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "amount": { "type": "number" },
+        "note": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "category", "amount", "createdBy", "createdAt"]
+    },
+    "SystemOptions": {
+      "title": "SystemOptions",
+      "description": "System choices and custom fields",
+      "type": "object",
+      "properties": {
+        "activityTypes": { "type": "array" },
+        "expenseCategories": { "type": "array" },
+        "durations": { "type": "array" },
+        "agentNames": { "type": "array" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User accounts"
+    },
+    "/vouchers/{voucherId}": {
+      "schema": "Voucher",
+      "description": "Vouchers"
+    },
+    "/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Expenses"
+    },
+    "/options/system": {
+      "schema": "SystemOptions",
+      "description": "Global system configurations"
+    }
+  }
+}
